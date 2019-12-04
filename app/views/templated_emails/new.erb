@@ -15,5 +15,11 @@
     <%= f.select :message_template_id, options_from_collection_for_select(MessageTemplate.all, 'id', 'name') %>
   </p>
 
+  <p>
+    <%= label_tag("Message Preview") %>
+    <br/>
+    <%= text_area_tag(:message_preview_text_area, "", size: "60x12") %>
+  </p>
+
   <p><%= f.submit %></p>
 <% end %>
