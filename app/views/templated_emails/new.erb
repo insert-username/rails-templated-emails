@@ -1,16 +1,32 @@
 <h1>Send a Templated Email</h1>
 <%= form_for @templated_email do |f| %>
+  <% if @templated_email.errors.any? %>
+    <div>Please correct the highlighted errors and try again.</div>
+  <% end %>
+
   <p>
+    <% @templated_email.errors.messages[:sender_name].each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+
     <%= f.label :sender_name %>
     <%= f.text_field :sender_name %>
   </p>
 
   <p>
+    <% @templated_email.errors.messages[:destination_email].each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+
     <%= f.label :destination_email %>
     <%= f.text_field :destination_email %>
   </p>
 
   <p>
+    <% @templated_email.errors.messages[:message_template].each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+
     <%= f.label "Message Template" %>
     <%= f.select :message_template_id, options_from_collection_for_select(MessageTemplate.all, 'id', 'name') %>
   </p>

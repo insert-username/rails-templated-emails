@@ -14,9 +14,11 @@ class TemplatedEmailsController < ApplicationController
 
     # todo: should validation fail,
     # redirect back to 'new'
-    @templated_email.save
-
-    redirect_to '#index'
+    if @templated_email.save
+      redirect_to action: 'index'
+    else
+      render 'new'
+    end
   end
 
   private def templated_email_parameters
