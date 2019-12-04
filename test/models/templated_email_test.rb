@@ -9,31 +9,33 @@ class TemplatedEmailTest < ActiveSupport::TestCase
   end
 
   test "should have sender_name before save" do
-    templated_email = create_valid_templated_email
-    templated_email.sender_name = nil
+    assert_does_not_save do |email|
+      email.sender_name = nil
+    end
+  end
 
-    assert_not templated_email.save
+  test "sender name should not be blank before save" do
+    assert_does_not_save do |email|
+      email.sender_name = ""
+    end
   end
 
   test "should have destination_email before save" do
-    templated_email = create_valid_templated_email
-    templated_email.destination_email = nil
-
-    assert_not templated_email.save
+    assert_does_not_save do |email|
+      email.destination_email = nil
+    end
   end
 
   test "should have message_template before save" do
-    templated_email = create_valid_templated_email
-    templated_email.message_template = nil
-
-    assert_not templated_email.save
+    assert_does_not_save do |email|
+      email.message_template = nil
+    end
   end
 
   test "should perform basic validation of destination_email field" do
-    templated_email = create_valid_templated_email
-    templated_email.destination_email = "invalid email"
-
-    assert_not templated_email.save
+    assert_does_not_save do |email|
+      email.destination_email = "invalid email"
+    end
   end
 
   private def create_valid_templated_email
@@ -43,5 +45,12 @@ class TemplatedEmailTest < ActiveSupport::TestCase
     result.message_template = MessageTemplate.first
 
     result
+  end
+
+  private def assert_does_not_save
+    templated_email = create_valid_templated_email
+    yield templated_email
+
+    assert_not templated_email.save
   end
 end
