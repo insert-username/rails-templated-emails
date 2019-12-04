@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_211345) do
+ActiveRecord::Schema.define(version: 2019_12_04_212321) do
 
   create_table "message_templates", force: :cascade do |t|
     t.string "name"
@@ -19,4 +19,14 @@ ActiveRecord::Schema.define(version: 2019_12_04_211345) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "templated_emails", force: :cascade do |t|
+    t.string "sender_name"
+    t.string "destination_email"
+    t.integer "message_template_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["message_template_id"], name: "index_templated_emails_on_message_template_id"
+  end
+
+  add_foreign_key "templated_emails", "message_templates"
 end

@@ -1,0 +1,14 @@
+<h1>Send a Templated Email</h1>
+<%= form_for @templated_email do |f| %>
+  <p>
+    <%= f.label :sender_name %>
+    <%= f.text_field :sender_name %>
+  </p>
+
+  <p>
+    <%= f.label :destination_email %>
+    <%= f.text_field :destination_email %>
+  </p>
+
+  <p><%= f.submit %></p>
+<% end %>
