@@ -10,5 +10,10 @@
     <%= f.text_field :destination_email %>
   </p>
 
+  <p>
+    <%= f.label "Message Template" %>
+    <%= f.select :message_template_id, options_from_collection_for_select(MessageTemplate.all, 'id', 'name') %>
+  </p>
+
   <p><%= f.submit %></p>
 <% end %>
