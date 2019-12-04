@@ -29,6 +29,13 @@ class TemplatedEmailTest < ActiveSupport::TestCase
     assert_not templated_email.save
   end
 
+  test "should perform basic validation of destination_email field" do
+    templated_email = create_valid_templated_email
+    templated_email.destination_email = "invalid email"
+
+    assert_not templated_email.save
+  end
+
   private def create_valid_templated_email
     result = TemplatedEmail.new
     result.sender_name = "Sender Name"
