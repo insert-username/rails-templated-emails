@@ -18,8 +18,8 @@
 
   <div class="form-group">
     <%= f.label "Message Template" %>
-    <%= f.select( :message_template_id,
-                 options_from_collection_for_select(MessageTemplate.all, 'id', 'name'),
+    <%= f.select(:message_template_id,
+                 options_from_collection_for_select(MessageTemplate.all, 'id', 'name', @templated_email.message_template_id),
                  {},
                  { :class => append_validity_css_class('form-control', @templated_email, :message_template) }) %>
 

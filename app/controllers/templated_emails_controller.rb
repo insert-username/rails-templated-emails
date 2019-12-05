@@ -23,6 +23,6 @@ class TemplatedEmailsController < ApplicationController
 
   private def templated_email_parameters
     params.require(:templated_email)
-        .permit(:sender_name, :destination_email)
+        .permit(:sender_name, :destination_email, :message_template_id)
   end
 end
