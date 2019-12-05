@@ -56,4 +56,3 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'validates_email_format_of', '>= 1.6.3'
 
 gem 'bootstrap', '~> 4.3.1'
-gem 'jquery-rails', '>= 4.3.5'
