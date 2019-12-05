@@ -14,7 +14,11 @@ class TemplatedEmailsController < ApplicationController
 
     # todo: should validation fail,
     # redirect back to 'new'
-    if @templated_email.save
+    if @templated_email.valid?
+      TemplatedEmailMailer.with(templated_email: @templated_email).send_templated_email.deliver_now
+
+      # persist the email now that it has been saved.
+      @templated_email.save
       redirect_to action: 'index'
     else
       render 'new'
