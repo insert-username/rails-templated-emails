@@ -1,1 +1,22 @@
 <h1>Previously Sent Emails:</h1>
+
+<%= link_to "Send a new email", new_templated_email_path, class: "btn btn-primary" %>
+
+<% if @templated_emails.empty? %>
+  <p>There are no emails to display.</p>
+<% else %>
+  <table>
+    <tr>
+      <th>Sender</th>
+      <th>Recipient</th>
+      <th>Message</th>
+    </tr>
+    <% @templated_emails.each do |templated_email| %>
+      <tr>
+        <td><%= templated_email.sender_name %></td>
+        <td><%= templated_email.destination_email %></td>
+        <td>Todo: link to message.</td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

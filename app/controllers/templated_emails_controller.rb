@@ -1,8 +1,7 @@
 class TemplatedEmailsController < ApplicationController
 
   def index
-    #todo: list all sent emails
-    # todo: pagination?
+    @templated_emails = TemplatedEmail.all
   end
 
   def new
