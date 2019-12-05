@@ -1,41 +1,35 @@
 <h1>Send a Templated Email</h1>
 <%= form_for @templated_email do |f| %>
   <% if @templated_email.errors.any? %>
-    <div>Please correct the highlighted errors and try again.</div>
+    <div class="alert alert-danger">Please correct the highlighted errors and try again.</div>
   <% end %>
 
-  <p>
-    <% @templated_email.errors.messages[:sender_name].each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-
+  <div class="form-group">
     <%= f.label :sender_name %>
-    <%= f.text_field :sender_name %>
-  </p>
+    <%= f.text_field :sender_name, class: append_validity_css_class('form-control', @templated_email, :sender_name) %>
+    <%= enumerate_field_errors(@templated_email, :sender_name) %>
+  </div>
 
-  <p>
-    <% @templated_email.errors.messages[:destination_email].each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-
+  <div class="form-group">
     <%= f.label :destination_email %>
-    <%= f.text_field :destination_email %>
-  </p>
+    <%= f.text_field :destination_email, class: append_validity_css_class('form-control', @templated_email, :destination_email) %>
+    <%= enumerate_field_errors(@templated_email, :destination_email) %>
+  </div>
 
-  <p>
-    <% @templated_email.errors.messages[:message_template].each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-
+  <div class="form-group">
     <%= f.label "Message Template" %>
-    <%= f.select :message_template_id, options_from_collection_for_select(MessageTemplate.all, 'id', 'name') %>
-  </p>
+    <%= f.select( :message_template_id,
+                 options_from_collection_for_select(MessageTemplate.all, 'id', 'name'),
+                 {},
+                 { :class => append_validity_css_class('form-control', @templated_email, :message_template) }) %>
 
-  <p>
-    <%= label_tag("Message Preview") %>
+    <%= enumerate_field_errors(@templated_email, :message_template) %>
+
+
+    <%= label_tag('message_preview_text_area', 'Message Preview') %>
     <br/>
-    <%= text_area_tag(:message_preview_text_area, "", size: "60x12") %>
-  </p>
+    <%= text_area_tag(:message_preview_text_area, "", class: 'form-control') %>
+  </div>
 
   <p><%= f.submit %></p>
 <% end %>

@@ -15,5 +15,12 @@ module RailsTemplatedEmails
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+
+    # Disable the default "field_with_errors" as bootstrap is being used to display
+    # form field hints. (see: https://stackoverflow.com/questions/5267998/rails-3-field-with-errors-wrapper-changes-the-page-appearance-how-to-avoid-t)
+    config.action_view.field_error_proc = Proc.new { |html_tag|
+      html_tag
+    }
   end
 end
