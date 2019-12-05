@@ -1,24 +1,33 @@
-# README
+# Notes for development
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Ubuntu
 
-Things you may want to cover:
+If ```gem install 'pg'``` fails, try the following first.
+```
+sudo apt-get -y install postgresql postgresql-contrib libpq-dev
+```
 
-* Ruby version
+```
+sudo -u postgres psql
+\password postgres
+create role rails_dev with createdb login password 'password'
 
-* System dependencies
 
-* Configuration
+export DATABASE_URL="url of local database"
+export MYAPP_DATABASE_PASSWORD="password for database"
 
-* Database creation
+You may have to follow:
+https://gist.github.com/AtulKsol/4470d377b448e56468baef85af7fd614
 
-* Database initialization
+Because rails wants to remove foreign key constraints during
+testing, you may have to give it superuser privileges.
 
-* How to run the test suite
+postgres=# ALTER USER rails_dev WITH SUPERUSER;
 
-* Services (job queues, cache servers, search engines, etc.)
+You will also need to update your Rubymine run configurations accordingly.
 
-* Deployment instructions
+```
 
-* ...
+## Deployment
+
+See: https://devcenter.heroku.com/articles/getting-started-with-rails6
