@@ -31,3 +31,9 @@ You will also need to update your Rubymine run configurations accordingly.
 ## Deployment
 
 See: https://devcenter.heroku.com/articles/getting-started-with-rails6
+
+once those instructions are followed, use:
+
+```git push heroku master```
+```heroku run rake db:migrate```
+```heroku run rake db:seed```
