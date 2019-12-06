@@ -20,6 +20,14 @@ class SendTemplatedEmailTest < ActionDispatch::IntegrationTest
          } }
 
     assert_redirected_to controller: "templated_emails", action: "index"
+    assert_equal 1, ActionMailer::Base.deliveries.count
+
+    mail_delivery = ActionMailer::Base.deliveries[0]
+
+    assert mail_delivery.subject.include?("John Doe"), "Should have sender name in subject."
+    assert mail_delivery.subject.include?(MessageTemplate.first.name),
+           "Should have MessageTemplate name in subject."
+    assert_equal MessageTemplate.first.body, mail_delivery.body.raw_source
   end
 
   test "redirected back to send email form if there are errors" do
