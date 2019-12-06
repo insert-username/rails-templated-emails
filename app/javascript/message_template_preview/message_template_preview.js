@@ -1,6 +1,6 @@
 $ = require('jquery');
 
-$().ready(function() {
+$(document).on('turbolinks:load', function() {
     let messagePreviewTextArea = $('#message_preview_text_area');
     let messageTemplateSelector = $('#templated_email_message_template_id');
 
