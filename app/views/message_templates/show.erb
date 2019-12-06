@@ -1,2 +1,12 @@
-<h2><%= @message_template.name %></h2>
-<p><%= @message_template.body.html_safe %></p>
+<div class="row">
+  <h1>Message:</h1>
+</div>
+
+<div class="row">
+  <div class="card">
+    <h5 class="card-header"><%= @message_template.name %></h5>
+    <div class="card-body">
+      <p><%= @message_template.body.html_safe %></p>
+    </div>
+  </div>
+</div>

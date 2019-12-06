@@ -1,4 +1,7 @@
-<h1>Send a Templated Email</h1>
+<div class="row">
+  <h1>Send a Templated Email</h1>
+</div>
+
 <%= form_for @templated_email do |f| %>
   <% if @templated_email.errors.any? %>
     <div class="alert alert-danger">Please correct the highlighted errors and try again.</div>
@@ -24,12 +27,14 @@
                  { :class => append_validity_css_class('form-control', @templated_email, :message_template) }) %>
 
     <%= enumerate_field_errors(@templated_email, :message_template) %>
-
-
-    <%= label_tag('message_preview_text_area', 'Message Preview') %>
-    <br/>
-    <div class="card" id="message_preview_text_area"></div>
   </div>
 
-  <p><%= f.submit %></p>
+  <div class="form-group">
+    <%= label_tag('message_preview_text_area', 'Message Preview') %>
+    <div class="card">
+      <div class="card-body" id="message_preview_text_area"></div>
+    </div>
+  </div>
+
+  <p><%= f.submit "Send Email", class: "btn btn-primary" %></p>
 <% end %>
