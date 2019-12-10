@@ -53,7 +53,7 @@ end
 
 group :production do
   # Use postgres as the database for Active Record, since that's required by heroku
-  gem 'pg'
+  gem 'pg', '>= 1.1.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
