@@ -41,6 +41,10 @@ How to setup for deployment and push to heroku.
 
 See: ```https://devcenter.heroku.com/articles/getting-started-with-rails6```
 
+To reset the deployment database:
+```heroku run rake db:reset```
+(heroku will nag you to confirm)
+
 once those instructions are followed, use:
 
 ```git push heroku master```
